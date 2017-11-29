@@ -1,8 +1,8 @@
-##Training project for webpack 3
+## Training project for webpack 3
 
 
 
-####Tree shaking 
+#### Tree shaking 
 <pre>dead-code elimination, relies on static structure of ES2015:</pre>
 
 require and module.exports  - dynamic, what is imported and exported can change at runtime.
