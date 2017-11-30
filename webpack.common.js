@@ -14,14 +14,15 @@ const extractSass = new ExtractTextPlugin({
 // 2. Dynamic imports: splitting code via inline function calls within modules with using import() or require.ensure
 
 module.exports = {
-    context: __dirname, //__dirname - Node.js utility variable - it is the directory name of the current file.
+    //context - The base directory, an absolute path, for resolving entry points and loaders from configuration.
+    context: path.resolve(__dirname, 'src'), //__dirname - Node.js utility variable - it is the directory name of the current file.
     entry: {
         // two bundles will be produced: index.bundle.js and another.bundle.js
         //Pitfalls(if there is no additional plugin line CommonsChunkPlugin):
         // - If there are any duplicated modules between entry chunks they will be included in both bundles.
         // - It isn't as flexible and can't be used to dynamically split code with the core application logic.
-        index: path.join(__dirname, "src","/index.jsx"),
-        another: path.join(__dirname, "src","/another.jsx")
+        index: "./index.jsx",
+        another: "./another.jsx"
     },
     output: {
         path: path.join(__dirname, "/build"),
@@ -72,16 +73,23 @@ module.exports = {
             {
                 test: /\.(png|jpg)/,
                 use: [
-                    'file-loader?name=assets/img/[name].[ext]'
+                    'file-loader?name=[path][name].[ext]'
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                include: path.resolve(__dirname, "src/assets/fonts"),
+                use: [
+                    'file-loader?name=[path][name].[ext]'
                 ]
             }
         ]
     },
     plugins: [
+        new CleanWebpackPlugin(['build']), //cleans build folder before every run
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
-        new CleanWebpackPlugin(['build']), //cleans build folder before every run
         /*new webpack.optimize.CommonsChunkPlugin({//extracts common dependencies into existing entry chunk or entirely new chunk
             name: 'common'
         }),*/

@@ -1,5 +1,9 @@
-
 @import 'variables';
+@import 'fonts';
+
+body {
+  font-family: "PT Sans", sans-serif;
+}
 
 .content {
   background: $main-color;
