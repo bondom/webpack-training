@@ -16,11 +16,11 @@ const prodConfig = merge(commonConfig, {
         ]
     },
     plugins: [
-        new webpack.DefinePlugin({
+        /*new webpack.DefinePlugin({
             //NODE_ENV is a system environment variable that Node.js exposes into running scripts.
             // It is used by convention to determine dev-vs-prod behavior by server tools, build scripts, and client-side libraries.
             'process.env.NODE_ENV': JSON.stringify('production')
-        }),
+        }),*/
         //this plugin avoids situation when we add new module, and do rebuild,
         //after this hash of vendor chunk is changed, due module ids were changed,
         //to prevent such situations we use this plugin, it causes hashes to be based on relative paths of the module

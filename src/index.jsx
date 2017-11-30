@@ -5,17 +5,25 @@ import ReactDOM from "react-dom";
 import {Switch, Route, Link, BrowserRouter} from "react-router-dom";
 import About from "./About";
 import Description from "./Description.jsx";
-
 //import configA from './configA'; - if uncomment, this module will be eliminated in build mode(tree shaking)
 
 // Installing react preset: npm install --save-dev babel-loader babel-core babel-preset-react webpack
 // - for Babel v6 and babel-loader v7
 
-//import "./index.html"; - if we use file loder for html files,  as another option CopyWebpackPlugin can be used
+//import "./index.html"; - if we use file loader for html files,  as another option CopyWebpackPlugin can be used
 
-if(process.env.NODE_ENV !== 'production') {
+import './assets/styles/global.scss';
+
+
+if(process.env.NODE_ENV === 'development') {
     console.log('Development mode!!!');
+} else if(process.env.NODE_ENV === 'production') {
+    console.log('Production mode!!!');
+} else {
+    console.log('Strange mode:' + process.env.NODE_ENV);
 }
+
+
 class App extends React.Component {
 
     render () {
@@ -23,7 +31,7 @@ class App extends React.Component {
         return (
 
             <BrowserRouter>
-                <div>
+                <div className="content">
                     <h1>Hello world Uasia</h1>
                     <img src={require("./assets/img/ford.png")}/>
                     <Link to="/">Home</Link>

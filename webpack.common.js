@@ -1,6 +1,13 @@
 const path = require('path');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+//extracts css in separate file, it is faster on loading because css and js are loaded in parallel
+const extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: process.env.NODE_ENV === "development"//if plugin is disabled fallback(see below) is used
+});
 
 //****Code splitting*****
 // 1. Entry points and preventing duplication
@@ -27,11 +34,16 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: [
-                    {loader: 'style-loader'},//2)then styles will be applied to page
-                    {loader: 'css-loader'} //1) transformation will be applied to files with extension .css to convert text
-                ]
+                test: /\.scss$/,
+                use: extractSass.extract({
+                    use: [{
+                        loader: "css-loader" // translates CSS into CommonJS
+                    }, {
+                        loader: "sass-loader" // compiles Sass to CSS
+                    }],
+                    // use style-loader in development
+                    fallback: "style-loader" // creates style nodes from JS strings(Adds CSS to the DOM by injecting a <style> tag)
+                })
             },
             {
                 enforce: "pre", //checking source files, not modified by other loaders
@@ -66,10 +78,15 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        }),
         new CleanWebpackPlugin(['build']), //cleans build folder before every run
         /*new webpack.optimize.CommonsChunkPlugin({//extracts common dependencies into existing entry chunk or entirely new chunk
             name: 'common'
         }),*/
+
+        extractSass
 
     ]
 
