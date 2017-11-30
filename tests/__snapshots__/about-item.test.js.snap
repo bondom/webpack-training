@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Div changes class when hovered 1`] = `
+<div
+  className="normal"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  About item About item About item
+</div>
+`;
+
+exports[`Div changes class when hovered 2`] = `
+<div
+  className="unnormal"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  About item About item About item
+</div>
+`;
+
+exports[`Div changes class when hovered 3`] = `
+<div
+  className="normal"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+>
+  About item About item About item
+</div>
+`;

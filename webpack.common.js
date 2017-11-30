@@ -65,7 +65,9 @@ module.exports = {
                 ],
                 loader: "babel-loader",
                 options: {
-                    presets: [ ["react"], ["es2015", { modules: false }]]
+                    //modules is false to avoid converting static ES6 import and export into dynamic ones => Tree Shaking works
+                    presets: [ ["react"], ["es2015", { modules: false }]],
+                    babelrc: false //to get rid of using .babelrc file that is used by jest
                 }
             },
 /*            {//for index.html file, as another option CopyWebpackPlugin can be used
