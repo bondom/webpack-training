@@ -27,10 +27,12 @@ module.exports = {
     output: {
         path: path.join(__dirname, "/build"),
         filename: "[name].[chunkhash].js",
-        publicPath: '/' //It is recommended that devServer.publicPath is the same as output.publicPath.
+        publicPath: "/" //It is recommended that devServer.publicPath is the same as output.publicPath.
     },
     resolve: {
-        extensions: ['.js', '.jsx']
+        //path.resolve(__dirname, "src") - allows absolute imports
+        modules: [path.resolve(__dirname, "src"), "node_modules"],
+        extensions: [".js", ".jsx"]
     },
     module: {
         rules: [

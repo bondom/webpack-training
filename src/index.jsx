@@ -3,8 +3,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import {Switch, Route, Link, BrowserRouter} from "react-router-dom";
-import About from "./About";
-import Description from "./Description.jsx";
+import About from "components/pages/about/About";
+import Description from "Description.jsx";
 //import configA from './configA'; - if uncomment, this module will be eliminated in build mode(tree shaking)
 
 // Installing react preset: npm install --save-dev babel-loader babel-core babel-preset-react webpack
@@ -12,7 +12,7 @@ import Description from "./Description.jsx";
 
 //import "./index.html"; - if we use file loader for html files,  as another option CopyWebpackPlugin can be used
 
-import './assets/styles/global.scss';
+import 'assets/styles/global.scss';
 
 
 if(process.env.NODE_ENV === 'development') {
@@ -33,7 +33,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <div className="content">
                     <h1>Hello world Uasia</h1>
-                    <img src={require("./assets/img/ford.png")}/>
+                    <img src={require("assets/img/ford.png")}/>
                     <Link to="/">Home</Link>
                     <Link to="/about">About</Link>
                     <Link to="/description">Description</Link>

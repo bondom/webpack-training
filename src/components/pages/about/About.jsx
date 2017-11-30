@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
-//import PropTypes from 'prop-types';
+import AboutItem from 'components/widgets/about-item/AboutItem';
 
 class About extends Component {
     render() {
         return (
             <div>
                 About page
+                <AboutItem/>
+                <AboutItem/>
             </div>
         )
     }
