@@ -9,7 +9,8 @@ module.exports = merge(commonConfig, {
     devServer: {
         contentBase: "./build", //this tells webpack-dev-server to serve files from build directory,
         publicPath: '/', //content from build folder will be accessed with this path
-        historyApiFallback: true
+        historyApiFallback: true,
+        hot: true
     },
     plugins: [
         //Make sure the entry chunk is cheap to emit by keeping it small,
@@ -21,8 +22,10 @@ module.exports = merge(commonConfig, {
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'src', 'index-t.ejs'),
-            filename: 'index.html'
-        })
+            filename: 'index.html',
+        }),
+        new webpack.NamedModulesPlugin(),
+        new webpack.HotModuleReplacementPlugin()
     ]
 });
 

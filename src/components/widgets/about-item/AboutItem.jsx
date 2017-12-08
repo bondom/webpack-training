@@ -23,7 +23,7 @@ class AboutItem extends Component {
                 className={this.state.className}
                 onMouseEnter={this.onMouseEnter}
                 onMouseLeave={this.onMouseLeave}>
-                    About item About item About item
+                    About item!!!
             </div>
         )
     }

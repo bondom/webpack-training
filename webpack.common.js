@@ -4,9 +4,10 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 //extracts css in separate file, it is faster on loading because css and js are loaded in parallel
+const isDev = process.env.NODE_ENV === "development";
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"//if plugin is disabled fallback(see below) is used
+    disable: isDev//if plugin is disabled fallback(see below) is used
 });
 
 //****Code splitting*****
@@ -26,7 +27,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, "/build"),
-        filename: "[name].[chunkhash].js",
+        filename: `[name]${isDev ? '' : '.[chunkhash]'}.js`,
         publicPath: "/" //It is recommended that devServer.publicPath is the same as output.publicPath.
     },
     resolve: {
