@@ -1,12 +1,8 @@
-import React, {Component} from 'react';
+import {Component} from 'react';
 
 class Description extends Component {
     render() {
-        return (
-            <div>
-                Description Description Description Description Description
-            </div>
-        )
+        return "Description Description Description Description Description";
     }
 }
 

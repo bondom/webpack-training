@@ -91,7 +91,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(['build']), //cleans build folder before every run
-        new webpack.DefinePlugin({
+        new webpack.DefinePlugin({ //is sufficient for React 16(if we use React 15 Environment Plugin should be used to improve performance)
             'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
         }),
         /*new webpack.optimize.CommonsChunkPlugin({//extracts common dependencies into existing entry chunk or entirely new chunk
